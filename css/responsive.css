@@ -1,0 +1,309 @@
+
+@media (max-width: 1100px) {
+  .workspace { padding: 30px 25px; }
+  .sidebar { flex-basis: 190px; }
+  .paper { padding: 26px 22px 18px; }
+}
+
+@media (max-width: 760px) {
+  .topbar {
+    padding: 10px 14px;
+    height: auto;
+    min-height: 75px;
+  }
+
+  .version { display: none; }
+  .brand small { font-size: 10px; }
+  .btn-gold { padding: 11px 12px; }
+
+  .layout { display: block; }
+
+  .sidebar {
+    padding: 12px 10px;
+    background: #242933;
+  }
+
+  .side-heading { margin: 0 0 9px; }
+
+  .project-list {
+    display: flex;
+    overflow-x: auto;
+    gap: 6px;
+    padding-bottom: 4px;
+  }
+
+  .project-link {
+    width: auto;
+    white-space: nowrap;
+    flex: none;
+    padding: 10px;
+  }
+
+  .project-link span:nth-child(2) {
+    overflow: visible;
+  }
+
+  .sidebar-bottom { display: none; }
+  .workspace { padding: 22px 10px; }
+  .book-shell { padding-right: 30px; }
+
+  .book {
+    padding: 10px 10px 10px 15px;
+    min-height: 500px;
+    border-radius: 16px;
+  }
+
+  .book::before {
+    left: 6px;
+    top: 10px;
+    bottom: 10px;
+  }
+
+  .paper {
+    min-height: 480px;
+    padding: 21px 14px 15px;
+  }
+
+  .paper-heading { padding-bottom: 20px; }
+  .paper-heading h1 { font-size: 24px; }
+
+  .edit-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .page-tab {
+    padding: 10px;
+    font-size: 11px;
+  }
+
+  .section-heading { margin: 22px 0 17px; }
+
+  .color-tabs {
+    width: 30px;
+    top: 12%;
+  }
+
+  .color-tab {
+    height: 58px;
+    font-size: 10px;
+    border-radius: 0 7px 7px 0;
+  }
+
+  .paper-footer {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .work-note { line-height: 1.4; }
+}
+
+@media (max-width: 420px) {
+  .brand strong { font-size: 15px; }
+
+  .brand-mark {
+    width: 38px;
+    height: 38px;
+  }
+
+  .topbar-right .btn { font-size: 12px; }
+  .paper-heading h1 { font-size: 21px; }
+  .section-heading { align-items: flex-start; }
+
+  .section-heading small {
+    max-width: 90px;
+    text-align: right;
+  }
+
+  .paper-footer .btn { padding: 9px; }
+}
+
+/* =========================================
+   PN-03 – RESPONZIVNÍ EDITOR
+   ========================================= */
+
+@media (max-width: 760px) {
+  .note-editor {
+    min-height: 250px;
+    padding: 13px;
+    font-size: 14px;
+  }
+
+  .editor-toolbar {
+    justify-content: flex-start;
+  }
+
+  #saveStatus {
+    width: 100%;
+    margin-bottom: 5px;
+  }
+
+  .page-tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 7px;
+  }
+
+  .page-tab {
+    flex: 0 0 auto;
+    max-width: 140px;
+  }
+}
+
+@media (max-width: 420px) {
+  .editor-toolbar .btn {
+    font-size: 11px;
+    padding: 9px;
+  }
+
+  .note-editor {
+    min-height: 220px;
+  }
+}
+
+/* =========================================
+   PN-04 – RESPONZIVITA ÚKOLŮ
+   ========================================= */
+
+@media (max-width: 760px) {
+
+  .task-actions label {
+    margin-left: 0;
+  }
+
+  .task-card {
+    padding: 12px;
+  }
+
+  .task-title {
+    font-size: 13px;
+  }
+
+  .task-description {
+    font-size: 12px;
+  }
+
+  .task-meta {
+    gap: 5px;
+  }
+}
+
+@media (max-width: 420px) {
+
+  .task-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .task-actions .btn {
+    width: 100%;
+  }
+
+  .task-card {
+    gap: 8px;
+  }
+
+  .task-edit {
+    padding: 7px;
+    font-size: 11px;
+  }
+}
+
+/* =========================================
+   PN-05 – RESPONZIVNÍ ZÁLOHOVÁNÍ
+   ========================================= */
+
+@media (max-width: 760px) {
+  .topbar {
+    flex-wrap: wrap;
+  }
+
+  .topbar-right {
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .backup-buttons {
+    gap: 6px;
+  }
+
+  .btn-backup {
+    font-size: 11px;
+    padding: 9px 10px;
+  }
+}
+
+@media (max-width: 420px) {
+  .topbar-right {
+    align-items: stretch;
+  }
+
+  .backup-buttons {
+    flex: 1;
+  }
+
+  .backup-buttons .btn {
+    flex: 1;
+    padding: 9px 6px;
+  }
+}
+
+/* =========================================
+   PN-06 – RESPONZIVNÍ VYHLEDÁVÁNÍ
+   ========================================= */
+
+@media (max-width: 760px) {
+  .search-dialog {
+    width: min(96vw, 650px);
+  }
+
+  .search-panel {
+    padding: 18px;
+  }
+
+  .search-results {
+    max-height: 55vh;
+  }
+
+  .search-result {
+    padding: 12px;
+  }
+
+  .topbar-right {
+    gap: 7px;
+  }
+
+  #openSearchBtn {
+    font-size: 11px;
+    padding: 9px 11px;
+  }
+}
+
+@media (max-width: 420px) {
+  .search-panel {
+    padding: 14px;
+    gap: 11px;
+  }
+
+  .search-panel .dialog-head h2 {
+    font-size: 18px;
+  }
+
+  .global-search-input {
+    font-size: 14px;
+    padding: 12px;
+  }
+
+  .search-footer {
+    font-size: 10px;
+  }
+
+  .search-result-excerpt {
+    font-size: 11px;
+  }
+
+  .topbar-right {
+    justify-content: center;
+  }
+}

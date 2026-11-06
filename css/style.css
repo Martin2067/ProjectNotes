@@ -1,0 +1,886 @@
+
+:root {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #172237;
+  background: #e9ebef;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; }
+button, input, textarea { font: inherit; }
+button { cursor: pointer; }
+[hidden] { display: none !important; }
+
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid #7898db;
+  outline-offset: 2px;
+}
+
+/* Horní panel */
+
+.topbar {
+  height: 82px;
+  background: #191d24;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  gap: 20px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  background: #d9ba84;
+  color: #111;
+  font-size: 24px;
+  font-weight: 900;
+}
+
+.brand strong {
+  display: block;
+  font-size: 18px;
+}
+
+.brand small {
+  display: block;
+  color: #bbc2cc;
+  font-size: 11px;
+  margin-top: 5px;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.version {
+  font-size: 10px;
+  letter-spacing: 1.3px;
+  color: #c4cad2;
+}
+
+/* Tlačítka */
+
+.btn {
+  border: 0;
+  border-radius: 10px;
+  padding: 12px 17px;
+  font-weight: 700;
+}
+
+.btn-gold {
+  background: #d8bb89;
+  color: #17202c;
+}
+
+.btn-gold:hover { background: #e6cc9f; }
+
+.btn-outline {
+  border: 1px dashed #cbd1d8;
+  background: white;
+  color: #6a7280;
+  font-weight: 400;
+}
+
+.btn-plain {
+  background: #eff0f2;
+  color: #354254;
+}
+
+.btn-danger {
+  background: #fbe4e4;
+  color: #a72c2c;
+}
+
+/* Levý panel projektů */
+
+.layout {
+  display: flex;
+  min-height: calc(100vh - 82px);
+}
+
+.sidebar {
+  flex: 0 0 210px;
+  background: #242933;
+  color: white;
+  padding: 32px 10px 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.side-heading {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 13px;
+  margin-bottom: 20px;
+  letter-spacing: 1.4px;
+  font-size: 10px;
+  font-weight: 700;
+  color: #a2b4d4;
+}
+
+.project-list {
+  display: grid;
+  gap: 4px;
+}
+
+.project-link {
+  width: 100%;
+  background: transparent;
+  color: #e8edf6;
+  border: 0;
+  text-align: left;
+  border-radius: 11px;
+  padding: 15px 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+  font-weight: 700;
+  min-width: 0;
+}
+
+.project-link span:nth-child(2) {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.project-link:hover,
+.project-link.active {
+  background: #3a414e;
+}
+
+.project-dot {
+  height: 10px;
+  width: 10px;
+  flex: none;
+  border-radius: 3px;
+}
+
+.sidebar-bottom {
+  margin-top: auto;
+  border-top: 1px solid #3c4350;
+  padding: 17px 7px 0;
+  font-size: 11px;
+  color: #cbd2dc;
+}
+
+.status-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: #9ed9aa;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+/* Černý zápisník */
+
+.workspace {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 42px 48px 32px;
+}
+
+.book-shell {
+  position: relative;
+  width: min(100%, 900px);
+  padding-right: 50px;
+}
+
+.book {
+  background: #181a1e;
+  border-radius: 22px;
+  padding: 17px 18px 17px 27px;
+  box-shadow: 0 18px 36px #17202c30;
+  position: relative;
+  min-height: 610px;
+}
+
+.book::before {
+  content: "";
+  position: absolute;
+  left: 13px;
+  top: 18px;
+  bottom: 18px;
+  width: 6px;
+  background: linear-gradient(
+    90deg, #0d1014, #353a40, #0c0e11
+  );
+  border-radius: 4px;
+}
+
+.paper {
+  background: #fdfcf9;
+  min-height: 576px;
+  border-radius: 4px 17px 17px 4px;
+  padding: 34px 27px 20px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: inset -5px 0 12px #d7d4cb55;
+}
+
+.paper-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  border-bottom: 1px solid #e0ded9;
+  padding-bottom: 26px;
+}
+
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 1.6px;
+  font-weight: 800;
+  color: #a98d65;
+}
+
+.paper-heading h1 {
+  font-size: 29px;
+  line-height: 1.2;
+  margin: 14px 0 6px;
+  overflow-wrap: anywhere;
+}
+
+.paper-heading p {
+  margin: 0;
+  font-size: 13px;
+  color: #9294a0;
+}
+
+.edit-btn {
+  border: 0;
+  border-radius: 50%;
+  width: 52px;
+  height: 52px;
+  flex: none;
+  background: #f4eee4;
+  color: #b08a4c;
+  font-size: 27px;
+}
+
+.edit-btn:hover { background: #e9dec9; }
+
+/* Stránky projektu */
+
+.page-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 19px;
+}
+
+.page-tab {
+  border: 0;
+  background: #f1f1f1;
+  color: #596579;
+  padding: 13px 15px;
+  border-radius: 10px;
+  font-size: 12px;
+}
+
+.page-tab.active {
+  color: white;
+  background: #303745;
+  font-weight: 700;
+}
+
+.page-body {
+  flex: 1;
+  min-height: 280px;
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin: 27px 0 21px;
+}
+
+.section-heading h2 {
+  font-size: 18px;
+  margin: 0;
+}
+
+.section-heading small {
+  font-size: 10px;
+  color: #9ca5b8;
+}
+
+.note-card {
+  border: 1px solid #e5e2df;
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 8px #00000007;
+  font-size: 13px;
+}
+
+.note-card p {
+  color: #778299;
+  font-size: 12px;
+  line-height: 1.6;
+  margin: 12px 0 0;
+}
+
+.demo-task {
+  padding: 15px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid #eeece9;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.demo-task input { accent-color: #303745; }
+
+.demo-task input:checked + span {
+  text-decoration: line-through;
+  color: #99a0a9;
+}
+
+.paper-footer {
+  border-top: 1px solid #e2dfda;
+  padding-top: 18px;
+  margin-top: 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  font-size: 11px;
+  color: #99a8c1;
+}
+
+/* Barevné záložky */
+
+.color-tabs {
+  position: absolute;
+  right: 0;
+  top: 13%;
+  width: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.color-tab {
+  height: 75px;
+  border: 0;
+  border-radius: 0 11px 11px 0;
+  font-weight: 800;
+  color: #293344;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-size: 13px;
+  box-shadow: 2px 4px 7px #0000000c;
+}
+
+.color-tab.active { transform: translateX(7px); }
+.color-tab:hover { filter: brightness(.96); }
+
+.work-note {
+  font-size: 11px;
+  color: #929caf;
+  text-align: center;
+  margin: 22px 0 0;
+}
+
+/* Dialog projektu */
+
+.project-dialog {
+  width: min(94vw, 510px);
+  border: 0;
+  border-radius: 17px;
+  padding: 0;
+  box-shadow: 0 22px 90px #0005;
+}
+
+.project-dialog::backdrop {
+  background: #0b1019a8;
+}
+
+.project-form {
+  padding: 27px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.dialog-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 11px;
+}
+
+.dialog-head h2 {
+  margin: 0;
+  font-size: 21px;
+}
+
+.icon-button {
+  border: 0;
+  background: transparent;
+  font-size: 29px;
+  color: #7e8795;
+}
+
+.project-form label {
+  font-size: 12px;
+  font-weight: 700;
+  margin-top: 10px;
+}
+
+.project-form input:not([type=color]),
+.project-form textarea {
+  border: 1px solid #d2d7df;
+  border-radius: 9px;
+  padding: 12px;
+  width: 100%;
+  background: white;
+}
+
+.project-form textarea { resize: vertical; }
+
+.color-row {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  color: #657083;
+  font-size: 12px;
+}
+
+.color-row input {
+  width: 54px;
+  height: 42px;
+  border: 0;
+  padding: 2px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.dialog-actions {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.grow { flex: 1; }
+
+.form-error {
+  font-size: 12px;
+  color: #b12424;
+  background: #fff0f0;
+  padding: 10px;
+  border-radius: 7px;
+}
+
+/* =========================================
+   PN-03 – EDITOR POZNÁMEK
+   ========================================= */
+
+.editor-area {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 300px;
+}
+
+.editor-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #687386;
+}
+
+.note-editor {
+  display: block;
+  width: 100%;
+  min-height: 280px;
+  padding: 18px;
+  border: 1px solid #dededb;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #263244;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  line-height: 1.8;
+  resize: vertical;
+  outline: none;
+}
+
+.note-editor:focus {
+  border-color: #c9ab78;
+  box-shadow: 0 0 0 3px #d8bb8930;
+}
+
+.note-editor::placeholder {
+  color: #a4aab3;
+}
+
+.editor-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 5px 0 12px;
+}
+
+#saveStatus {
+  margin-right: auto;
+  font-size: 11px;
+  color: #788499;
+}
+
+.editor-toolbar .btn {
+  font-size: 12px;
+  padding: 10px 12px;
+}
+
+#deletePageBtn {
+  color: #a84040;
+}
+
+#deletePageBtn:hover {
+  background: #fff0f0;
+  border-color: #e7b8b8;
+}
+
+.page-tab {
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.page-tab:hover:not(.active) {
+  background: #e8e8e8;
+}
+
+#pageContent[hidden] {
+  display: none;
+}
+
+/* =========================================
+   PN-04 – SPRÁVA ÚKOLŮ
+   ========================================= */
+
+.task-area {
+  min-height: 300px;
+}
+
+.task-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.task-actions label {
+  margin-left: auto;
+  font-size: 12px;
+  color: #667185;
+}
+
+.task-actions select,
+.project-form select {
+  padding: 11px;
+  border: 1px solid #d2d7df;
+  border-radius: 9px;
+  background: #fff;
+  color: #263244;
+}
+
+.task-summary {
+  font-size: 12px;
+  color: #768398;
+  margin-bottom: 12px;
+}
+
+.task-list {
+  display: grid;
+  gap: 10px;
+}
+
+.task-card {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 15px;
+  border: 1px solid #e4e4e0;
+  background: #fff;
+  border-radius: 12px;
+}
+
+.task-check {
+  width: 17px;
+  height: 17px;
+  margin-top: 3px;
+  accent-color: #303745;
+  cursor: pointer;
+}
+
+.task-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.task-title {
+  font-size: 14px;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.task-card.done .task-title {
+  color: #84909d;
+  text-decoration: line-through;
+}
+
+.task-description {
+  margin: 7px 0;
+  font-size: 12px;
+  color: #6d788b;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.task-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px;
+  margin-top: 9px;
+}
+
+.task-chip {
+  display: inline-block;
+  padding: 5px 8px;
+  border-radius: 7px;
+  background: #edf0f5;
+  color: #475469;
+  font-size: 10px;
+}
+
+.task-chip.high {
+  background: #ffe8df;
+  color: #a33f23;
+}
+
+.task-chip.low {
+  background: #e6f5eb;
+  color: #286d48;
+}
+
+.task-chip.overdue {
+  background: #ffe0e0;
+  color: #a72c2c;
+}
+
+.task-edit {
+  border: 1px solid #e4e0d9;
+  background: #faf8f4;
+  color: #665743;
+  border-radius: 8px;
+  padding: 8px 11px;
+  font-size: 12px;
+}
+
+.task-edit:hover {
+  background: #f0e8dc;
+}
+
+.task-empty {
+  border: 1px dashed #d5d8db;
+  border-radius: 12px;
+  padding: 25px;
+  text-align: center;
+  color: #788499;
+  font-size: 13px;
+}
+
+/* Formulář nového úkolu */
+
+.task-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.task-form-grid > div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* =========================================
+   PN-05 – ZÁLOHOVÁNÍ
+   ========================================= */
+
+.backup-buttons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-backup {
+  background: #303745;
+  color: #f0f2f6;
+  border: 1px solid #485264;
+  padding: 11px 14px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.btn-backup:hover {
+  background: #424d5e;
+}
+
+.btn-backup:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
+
+/* =========================================
+   PN-06 – GLOBÁLNÍ VYHLEDÁVÁNÍ
+   ========================================= */
+
+.search-dialog {
+  width: min(94vw, 650px);
+  max-height: 85vh;
+  overflow: hidden;
+}
+
+.search-panel {
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-height: 85vh;
+}
+
+.search-panel .dialog-head {
+  margin-bottom: 2px;
+}
+
+.global-search-input {
+  display: block;
+  width: 100%;
+  padding: 15px 17px;
+  border: 1px solid #d0d5dc;
+  border-radius: 11px;
+  font-size: 15px;
+  background: #fff;
+  color: #172237;
+  outline: none;
+}
+
+.global-search-input:focus {
+  border-color: #c6a575;
+  box-shadow: 0 0 0 3px #d8bb8935;
+}
+
+.search-info {
+  font-size: 12px;
+  color: #778298;
+}
+
+.search-results {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow-y: auto;
+  min-height: 100px;
+  max-height: 50vh;
+  padding: 3px 2px;
+}
+
+.search-result {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 6px;
+  text-align: left;
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid #e2e4e7;
+  border-radius: 11px;
+  background: #fff;
+  color: #182337;
+  cursor: pointer;
+}
+
+.search-result:hover,
+.search-result:focus-visible {
+  background: #f6f1e8;
+  border-color: #d8bb89;
+}
+
+.search-result strong {
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+
+.search-result-location {
+  font-size: 11px;
+  font-weight: 600;
+  color: #a17f50;
+}
+
+.search-result-excerpt {
+  font-size: 12px;
+  line-height: 1.5;
+  color: #69768a;
+  overflow-wrap: anywhere;
+}
+
+.search-empty {
+  text-align: center;
+  padding: 25px 12px;
+  color: #788499;
+  font-size: 13px;
+}
+
+.search-footer {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #e5e5e5;
+  padding-top: 13px;
+  color: #9099a8;
+  font-size: 11px;
+}
+
+/* Zvýraznění nového tlačítka hledání */
+
+#openSearchBtn {
+  white-space: nowrap;
+}
+
+#openSearchBtn:hover {
+  background: #424d5e;
+}

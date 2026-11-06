@@ -1,0 +1,382 @@
+
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#171b22">
+
+  <title>ProjectNotes | Universal Software</title>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <script type="module" src="js/app.js"></script>
+</head>
+
+<body>
+  <!-- HORNÍ PANEL -->
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">P</span>
+      <div>
+        <strong>ProjectNotes</strong>
+        <small>Universal Software · projektový zápisník</small>
+      </div>
+    </div>
+
+    <div class="topbar-right">
+      <span class="version">VERZE 1.0 · PN-06</span>
+
+      <button id="openSearchBtn"
+        class="btn btn-backup" type="button"
+        title="Vyhledávání (Ctrl + K)">
+        &#128269; Hledat
+      </button>
+
+      <div class="backup-buttons">
+        <button id="exportBackupBtn"
+          class="btn btn-backup" type="button">
+          ↓ Zálohovat
+        </button>
+
+        <button id="importBackupBtn"
+          class="btn btn-backup" type="button">
+          ↑ Obnovit
+        </button>
+      </div>
+
+      <button id="newProjectBtn"
+        class="btn btn-gold" type="button">
+        + Nový projekt
+      </button>
+    </div>
+  </header>
+
+  <div class="layout">
+    <!-- LEVÝ PANEL -->
+    <aside class="sidebar">
+      <div class="side-heading">
+        <span>MOJE PROJEKTY</span>
+        <span id="projectCount">0</span>
+      </div>
+
+      <nav id="projectList" class="project-list"
+        aria-label="Projekty"></nav>
+
+      <div class="sidebar-bottom">
+        <span class="status-dot"></span>
+        Lokální zápisník · IndexedDB
+      </div>
+    </aside>
+
+    <!-- HLAVNÍ ZÁPISNÍK -->
+    <main class="workspace">
+      <div class="book-shell">
+        <div class="book">
+          <section class="paper">
+            <div class="paper-heading">
+              <div>
+                <div class="eyebrow" id="projectEyebrow">
+                  PROJEKTOVÝ ZÁPISNÍK
+                </div>
+
+                <h1 id="projectTitle">Načítání…</h1>
+                <p id="projectDescription"></p>
+              </div>
+
+              <button id="editProjectBtn"
+                class="edit-btn" type="button"
+                title="Upravit projekt"
+                aria-label="Upravit projekt">✎</button>
+            </div>
+
+            <nav id="pageTabs" class="page-tabs"
+              aria-label="Stránky projektu"></nav>
+
+            <div class="page-body">
+              <div class="section-heading">
+                <h2 id="pageTitle">Poznámky</h2>
+                <small id="pageInfo">PN-06</small>
+              </div>
+
+              <!-- EDITOR POZNÁMEK -->
+              <div id="pageContent" class="editor-area">
+                <label for="noteEditor" class="editor-label">
+                  Obsah stránky
+                </label>
+
+                <textarea id="noteEditor"
+                  class="note-editor"
+                  placeholder="Sem si napiš poznámky, e-maily, SQL dotazy..."
+                  spellcheck="true"></textarea>
+
+                <div class="editor-toolbar">
+                  <span id="saveStatus" role="status">
+                    Připraveno
+                  </span>
+
+                  <button id="renamePageBtn"
+                    type="button" class="btn btn-outline">
+                    Přejmenovat
+                  </button>
+
+                  <button id="deletePageBtn"
+                    type="button" class="btn btn-outline">
+                    Smazat
+                  </button>
+
+                  <button id="savePageBtn"
+                    type="button" class="btn btn-gold">
+                    Uložit
+                  </button>
+                </div>
+              </div>
+
+              <!-- ÚKOLY -->
+              <div id="taskContent" class="task-area" hidden>
+                <div class="task-actions">
+                  <button id="newTaskBtn"
+                    class="btn btn-gold" type="button">
+                    + Nový úkol
+                  </button>
+
+                  <label for="taskFilter">Zobrazit:</label>
+
+                  <select id="taskFilter">
+                    <option value="all">Všechny</option>
+                    <option value="active">Aktivní</option>
+                    <option value="done">Dokončené</option>
+                  </select>
+                </div>
+
+                <div id="taskSummary" class="task-summary"></div>
+                <div id="taskList" class="task-list"></div>
+              </div>
+            </div>
+
+            <footer class="paper-footer">
+              <span id="pageFooter">Projektový zápisník</span>
+
+              <button id="addPageBtn"
+                class="btn btn-outline" type="button">
+                + Přidat stránku
+              </button>
+            </footer>
+          </section>
+        </div>
+
+        <nav id="colorTabs" class="color-tabs"
+          aria-label="Barevné záložky projektů"></nav>
+      </div>
+
+      <p class="work-note">
+        PN-06 · Projekty, poznámky a úkoly se ukládají lokálně.
+      </p>
+    </main>
+  </div>
+
+  <!-- DIALOG PROJEKTU -->
+  <dialog id="projectDialog" class="project-dialog"
+    aria-labelledby="dialogTitle">
+    <form id="projectForm" class="project-form">
+      <div class="dialog-head">
+        <h2 id="dialogTitle">Nový projekt</h2>
+
+        <button type="button" class="icon-button"
+          id="closeDialogBtn" aria-label="Zavřít">×</button>
+      </div>
+
+      <label for="projectName">Název projektu *</label>
+      <input id="projectName" maxlength="80"
+        required autocomplete="off">
+
+      <label for="projectDesc">Popis</label>
+      <textarea id="projectDesc"
+        maxlength="300" rows="3"></textarea>
+
+      <label for="projectShort">Zkratka *</label>
+      <input id="projectShort" maxlength="6"
+        required autocomplete="off">
+
+      <label for="projectColor">Barva záložky</label>
+      <div class="color-row">
+        <input id="projectColor" type="color"
+          value="#edc06c">
+        <span>Vyber barvu projektu</span>
+      </div>
+
+      <p id="formError" class="form-error"
+        role="alert" hidden></p>
+
+      <div class="dialog-actions">
+        <button id="deleteProjectBtn"
+          type="button" class="btn btn-danger"
+          hidden>Smazat projekt</button>
+
+        <span class="grow"></span>
+
+        <button id="cancelDialogBtn"
+          type="button" class="btn btn-plain">
+          Zrušit
+        </button>
+
+        <button type="submit" class="btn btn-gold">
+          Uložit projekt
+        </button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- DIALOG STRÁNKY -->
+  <dialog id="pageDialog" class="project-dialog"
+    aria-labelledby="pageDialogTitle">
+    <form id="pageForm" class="project-form">
+      <div class="dialog-head">
+        <h2 id="pageDialogTitle">Nová stránka</h2>
+
+        <button id="closePageDialogBtn"
+          type="button" class="icon-button"
+          aria-label="Zavřít">×</button>
+      </div>
+
+      <label for="newPageName">Název stránky *</label>
+      <input id="newPageName" type="text"
+        maxlength="80" required autocomplete="off"
+        placeholder="Např. SQL dotazy">
+
+      <p id="pageFormError" class="form-error"
+        role="alert" hidden></p>
+
+      <div class="dialog-actions">
+        <span class="grow"></span>
+        <button id="cancelPageDialogBtn"
+          type="button" class="btn btn-plain">
+          Zrušit
+        </button>
+
+        <button type="submit" class="btn btn-gold">
+          Vytvořit stránku
+        </button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- DIALOG ÚKOLU -->
+  <dialog id="taskDialog" class="project-dialog"
+    aria-labelledby="taskDialogTitle">
+    <form id="taskForm" class="project-form">
+      <div class="dialog-head">
+        <h2 id="taskDialogTitle">Nový úkol</h2>
+
+        <button id="closeTaskDialogBtn"
+          type="button" class="icon-button"
+          aria-label="Zavřít">×</button>
+      </div>
+
+      <label for="taskName">Název úkolu *</label>
+      <input id="taskName" maxlength="150"
+        required autocomplete="off"
+        placeholder="Např. Otestovat dodací list">
+
+      <label for="taskDescription">Popis</label>
+      <textarea id="taskDescription"
+        maxlength="2000" rows="3"></textarea>
+
+      <div class="task-form-grid">
+        <div>
+          <label for="taskPriority">Priorita</label>
+          <select id="taskPriority">
+            <option value="low">Nízká</option>
+            <option value="medium" selected>Střední</option>
+            <option value="high">Vysoká</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="taskStatus">Stav</label>
+          <select id="taskStatus">
+            <option value="todo">K vyřízení</option>
+            <option value="doing">Probíhá</option>
+            <option value="done">Hotovo</option>
+          </select>
+        </div>
+      </div>
+
+      <label for="taskDueDate">
+        Termín dokončení (nepovinný)
+      </label>
+      <input id="taskDueDate" type="date">
+
+      <p id="taskFormError" class="form-error"
+        role="alert" hidden></p>
+
+      <div class="dialog-actions">
+        <button id="deleteTaskBtn" type="button"
+          class="btn btn-danger" hidden>
+          Smazat úkol
+        </button>
+
+        <span class="grow"></span>
+
+        <button id="cancelTaskDialogBtn"
+          type="button" class="btn btn-plain">
+          Zrušit
+        </button>
+
+        <button type="submit" class="btn btn-gold">
+          Uložit úkol
+        </button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- VÝBĚR ZÁLOŽNÍHO SOUBORU -->
+  <input type="file" id="backupFileInput"
+    accept=".json,application/json" hidden>
+
+  <!-- PN-06 – GLOBÁLNÍ VYHLEDÁVÁNÍ -->
+  <dialog id="searchDialog"
+    class="project-dialog search-dialog"
+    aria-labelledby="searchDialogTitle">
+
+    <div class="search-panel">
+      <div class="dialog-head">
+        <h2 id="searchDialogTitle">
+          Hledat v zápisníku
+        </h2>
+
+        <button id="closeSearchBtn"
+          type="button" class="icon-button"
+          aria-label="Zavřít hledání">×</button>
+      </div>
+
+      <label for="globalSearchInput" class="editor-label">
+        Hledat projekt, stránku, poznámku nebo úkol
+      </label>
+
+      <input id="globalSearchInput"
+        class="global-search-input"
+        type="search"
+        maxlength="200"
+        autocomplete="off"
+        placeholder="Např. faktura, dodací list, SQL...">
+
+      <div id="searchInfo" class="search-info"
+        role="status">
+        Zadej hledaný text.
+      </div>
+
+      <div id="searchResults"
+        class="search-results"
+        aria-label="Výsledky hledání">
+      </div>
+
+      <div class="search-footer">
+        <span>Ctrl + K – hledání</span>
+        <span>Esc – zavřít</span>
+      </div>
+    </div>
+  </dialog>
+
+</body>
+</html>
